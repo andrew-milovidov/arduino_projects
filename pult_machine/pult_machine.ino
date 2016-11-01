@@ -26,7 +26,6 @@ void loop(){
     if (data[0] != 'M')
       return;
     uint16_t trottle = data[1] + (data[2] << 8);
-    trottle = 1024 + trottle - trottle_0;
     if (trottle > 1030) 
     {
       trottle = (trottle - 1024) / 2;
@@ -50,7 +49,6 @@ void loop(){
    
     }
     uint16_t yaw = data[3] + (data[4] << 8);
-    yaw = 1024 + yaw - yaw_0;
     if (yaw > 1030) 
     {
       yaw = (yaw - 1024) / 7;
