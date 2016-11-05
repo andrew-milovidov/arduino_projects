@@ -8,7 +8,6 @@
   uint16_t turn_0;
   uint16_t front_0;
   uint16_t right_0;
-  uint16_t trottle_cur;
 
 
 void setup(){
@@ -27,6 +26,9 @@ void setup(){
   turn_0 = analogRead(A1);
   front_0 = analogRead(A2);
   right_0 = analogRead(A3);  
+  //Serial.begin(28800);
+  delay(50);
+  //Serial.write("Ready");
 }
 
 
@@ -43,16 +45,17 @@ void loop() {
   turn = 1024 - turn_0 + turn;
   
   data[0] = 'M';
-  data[1] = (trottle_cur >> 8) & 0xFF;
-  data[2] = (trottle_cur) & 0xFF;
-  data[3] = (turn >> 8) & 0xFF;
+  data[1] = (trottle >> 8) & 0xFF;
+  data[2] = (trottle) & 0xFF;
+  data[3] = (turn >> 8)   & 0xFF;
   data[4] = (turn) & 0xFF;
   data[5] = (right >> 8) & 0xFF;
   data[6] = (right) & 0xFF;
   data[7] = (front >> 8) & 0xFF;
   data[8] = (front) & 0xFF;
   mirfSend();
-  delay(100);
+  //Serial.write("Sent");
+  delay(70);
 }
   
   void mirfSend()
